@@ -11,11 +11,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set Version
       id: set_version
-      run: echo "VERSION=v$(date +'%Y.%m.%d.%H%M')" >> $GITHUB_ENV
-
+      shell: bash
+      run: |
+        VERSION="v$(date +'%Y.%m.%d.%H%M')"
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "Version is $VERSION"
+    
     - uses: teatimeguest/setup-texlive-action@v2
       with:
         packages: >-
